@@ -18,8 +18,7 @@ var SASS_DEPENDANCIES = [
 
 var isProduction = process.env.NODE_ENV == 'production';
 
-gulp.task('default', function() {
-    console.log('Hello World');
+gulp.task('default', ['sass', 'webpack'], function() {
 });
 
 gulp.task('sass', function () {

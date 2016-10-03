@@ -20,6 +20,8 @@
     "gulp-sourcemaps": "^1.6.0",
     "gulp-util": "^3.0.7",
     "moment": "^2.15.1",
+    "vue": "^2.0.1",
+    "vue-loader": "^9.5.1",
     "webpack": "^1.13.2"
   }
 }

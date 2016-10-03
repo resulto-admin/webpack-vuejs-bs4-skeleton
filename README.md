@@ -7,6 +7,7 @@
 3. libsass (nodesass/gulp-sass)
 4. Bootstrap 4
 5. Webpack
+6. Vue.js 2.x
 
 ## Style
 
