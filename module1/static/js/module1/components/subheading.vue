@@ -6,7 +6,7 @@
 </template>
 
 <script>
-component = {
+var component = {
     props: ['title', 'description']
 } 
 

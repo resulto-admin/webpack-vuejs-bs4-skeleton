@@ -10,7 +10,10 @@ var webpack = require('webpack');
 
 var SASS_PATH = './*/static/style/*/*.scss';
 
-var JS_PATH = './*/static/js/**/*.js';
+var JS_PATH = [
+    './*/static/js/**/*.js',
+    './*/static/js/**/*.vue'
+];
 
 var SASS_DEPENDANCIES = [
     './node_modules/bootstrap/scss/'

@@ -15,6 +15,7 @@ webpackJsonp([1],[
 
 	// Custom Components
 	var SubHeading = __webpack_require__(5);
+	var DataTables = __webpack_require__(8);
 
 	// Bootstrap Component
 	// Imported as ES6 because require() does not seem to work :'('
@@ -22,9 +23,11 @@ webpackJsonp([1],[
 
 	new Vue({
 	    el: '#narrow-jumbotron',
+	    data: window.context,
 	    components: {
 	        'vs-alert': _alert2.default,
-	        'subheading': SubHeading
+	        'subheading': SubHeading,
+	        'vs-datatables': DataTables
 	    }
 	});
 
@@ -158,7 +161,7 @@ webpackJsonp([1],[
 	//
 	//
 
-	component = {
+	var component = {
 	    props: ['title', 'description']
 	};
 
@@ -175,6 +178,115 @@ webpackJsonp([1],[
 	  module.hot.accept()
 	  if (module.hot.data) {
 	     require("vue-hot-reload-api").rerender("data-v-1", module.exports)
+	  }
+	}
+
+/***/ },
+/* 8 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_exports__, __vue_options__
+
+	/* script */
+	__vue_exports__ = __webpack_require__(9)
+
+	/* template */
+	var __vue_template__ = __webpack_require__(11)
+	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
+	if (
+	  typeof __vue_exports__.default === "object" ||
+	  typeof __vue_exports__.default === "function"
+	) {
+	if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
+	__vue_options__ = __vue_exports__ = __vue_exports__.default
+	}
+	if (typeof __vue_options__ === "function") {
+	  __vue_options__ = __vue_options__.options
+	}
+	__vue_options__.render = __vue_template__.render
+	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
+
+	/* hot reload */
+	if (false) {(function () {
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), false)
+	  if (!hotAPI.compatible) return
+	  module.hot.accept()
+	  if (!module.hot.data) {
+	    hotAPI.createRecord("data-v-2", __vue_options__)
+	  } else {
+	    hotAPI.reload("data-v-2", __vue_options__)
+	  }
+	})()}
+	if (__vue_options__.functional) {console.error("[vue-loader] datatables.vue: functional components are not supported and should be defined in plain js files using render functions.")}
+
+	module.exports = __vue_exports__
+
+
+/***/ },
+/* 9 */
+/***/ function(module, exports, __webpack_require__) {
+
+	//
+	//
+	//
+	//
+
+	var $ = __webpack_require__(10);
+
+	var component = {
+	    props: ['options', 'status', 'data'],
+	    mounted: function () {
+	        this.$nextTick(function () {
+	            // Equivalent to domReady/jquery.ready
+	            this.dataTable = $(this.$el).DataTable(this.options);
+	            this.loadData();
+	        });
+	    },
+	    watch: {
+	        data: {
+	            handler: function (value, old_value) {
+	                this.loadData();
+	            },
+	            immediate: true
+	        }
+	    },
+	    methods: {
+	        loadData: function () {
+	            if (!this.dataTable) {
+	                return;
+	            }
+	            this.dataTable.clear().rows.add(this.data).draw();
+	        }
+	    }
+	};
+	module.exports = component;
+
+/***/ },
+/* 10 */
+/***/ function(module, exports) {
+
+	module.exports = jQuery;
+
+/***/ },
+/* 11 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports={render:function (){with(this) {
+	  return _m(0)
+	}},staticRenderFns: [function (){with(this) {
+	  return _h('table', {
+	    staticClass: "table table-striped table-bordered",
+	    attrs: {
+	      "cellspacing": "0",
+	      "width": "100%"
+	    }
+	  })
+	}}]}
+	if (false) {
+	  module.hot.accept()
+	  if (module.hot.data) {
+	     require("vue-hot-reload-api").rerender("data-v-2", module.exports)
 	  }
 	}
 
