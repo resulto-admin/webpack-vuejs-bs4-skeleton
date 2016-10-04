@@ -26,11 +26,14 @@ module.exports = {
     externals: {
         'jquery': 'jQuery'
     },
+    themeLoader: {
+        themes: ['./node_modules/vuestrap/theme/bootstrap.scss'], // docs theme, default bootstrap
+    },
     module: {
         loaders: [
             {
                 test: /\.js$/,
-                exclude: /(node_modules|bower_components)/,
+                exclude: /(node_modules\/(moment|vue\/)|bower_components)/,
                 loader: 'babel', // 'babel-loader' is also a valid name to reference
                 query: {
                     presets: ['es2015']
@@ -40,6 +43,14 @@ module.exports = {
                 test: /\.vue$/,
                 loader: 'vue'
             },
+            {
+                test: /\.html$/,
+                loader: 'html'
+            },
+			{
+                test: /\.scss$/,
+                loader: 'style-loader!css-loader!autoprefixer-loader!sass-loader!vuestrap-theme-loader'
+            }
         ]
     },
     resolve: {
