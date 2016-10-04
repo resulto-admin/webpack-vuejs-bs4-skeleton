@@ -3,7 +3,7 @@ var helloWorld = require('module1/libs/helloworld');
 
 // Custom Components
 var SubHeading = require('module1/components/subheading.vue');
-var DataTables = require('module1/components/datatables.vue');
+var DataTables = require('module1/components/datatables');
 
 // Bootstrap Component
 // Imported as ES6 because require() does not seem to work :'('
