@@ -17,6 +17,7 @@ var isProduction = process.env.NODE_ENV == 'production';
 module.exports = {
     entry: {
         'module1/static/js/module1/narrowJumbotron': './module1/static/js/module1/narrowJumbotron',
+        'common': ['vue']
     },
     output: {
         path: __dirname,
@@ -61,12 +62,13 @@ module.exports = {
     },
     plugins: [
         // Necessary to only include the required languages.
-        new webpack.ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(en|fr)$/)
+        new webpack.ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(en|fr)$/),
+        new webpack.optimize.CommonsChunkPlugin(/* chunkName= */'common', /* filename= */'module1/static/js/module1/common.bundle.js')
     ]
 };
 
 if (isProduction) {
-	module.exports.devtool = '#source-map';
+	// module.exports.devtool = '#source-map';
 	// http://vue-loader.vuejs.org/en/workflow/production.html
 	module.exports.plugins = (module.exports.plugins || []).concat([
 		new webpack.DefinePlugin({
@@ -78,7 +80,7 @@ if (isProduction) {
             compress: {
                 warnings: false
             }
-		})
+		}),
+        new webpack.optimize.OccurenceOrderPlugin()
 	]);
 }
-
